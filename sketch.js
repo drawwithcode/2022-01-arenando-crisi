@@ -22,9 +22,11 @@ let c = 0;
 
 let rr;
 
+let cnv;
+
 function setup() {
   angleMode(DEGREES);
-  createCanvas(windowWidth, windowHeight);
+  cnv = createCanvas(windowWidth, windowHeight);
   r1 = random(255);
   g1 = random(255);
   b1 = random(255);
@@ -45,9 +47,9 @@ function setup() {
   g5 = random(255);
   b5 = random(255);
 
-  s1 = random(windowHeight / 10);
-  s2 = random(windowHeight / 10);
-  s3 = random(windowHeight / 10);
+  s1 = random(-(windowHeight / 10), windowHeight / 10);
+  s2 = random(-(windowHeight / 10), windowHeight / 10);
+  s3 = random(-(windowHeight / 10), windowHeight / 10);
 
   rot1 = random(40);
   rot2 = random(40);
@@ -60,6 +62,11 @@ function setup() {
   background(r5 / 10, b5 / 10, g5 / 10);
 
   cont = int(random(30));
+
+  fill("white");
+  textSize(25);
+  textAlign(CENTER, CENTER);
+  text("Click anywhere to save", 0, 0, windowWidth, windowHeight);
 }
 
 function draw() {
@@ -165,4 +172,9 @@ function draw() {
   pX = X;
 
   c = c + 1;
+}
+
+function mouseClicked() {
+  save(cnv, "My_pollock.jpg");
+  console.log(rr);
 }
