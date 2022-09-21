@@ -20,7 +20,9 @@ let sc1, sc2, sc3;
 let cont;
 let c = 0;
 
-let rr;
+let rr = false;
+
+let r = false;
 
 let cnv;
 
@@ -62,15 +64,25 @@ function setup() {
   background(r5 / 10, b5 / 10, g5 / 10);
 
   cont = int(random(30));
-
-  fill("white");
-  textSize(25);
-  textAlign(CENTER, CENTER);
-  text("Click anywhere to save", 0, 0, windowWidth, windowHeight);
 }
 
 function draw() {
-  if (frameCount == 1) {
+  if (rr == false && r == false) {
+    background(r5 / 10, b5 / 10, g5 / 10);
+    fill("white");
+    textSize(25);
+    textAlign(CENTER, CENTER);
+    noStroke();
+    text(
+      "Drip the paint all over the canvas like Pollock, be careful not to stop or the paint will all puor in one place. Click anywhere to start, then click anywhere to save!",
+      windowWidth / 4,
+      0,
+      windowWidth / 2,
+      windowHeight
+    );
+  } else if (rr == true && r == false) {
+    background(r5 / 10, b5 / 10, g5 / 10);
+    r = true;
   }
   var tX = mouseX;
   var tY = mouseY;
@@ -175,6 +187,9 @@ function draw() {
 }
 
 function mouseClicked() {
-  save(cnv, "My_pollock.jpg");
-  console.log(rr);
+  if (rr == false) {
+    rr = true;
+  } else {
+    save(cnv, "My_pollock.jpg");
+  }
 }
